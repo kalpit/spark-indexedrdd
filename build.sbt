@@ -42,3 +42,8 @@ libraryDependencies += "com.ankurdave" %% "part" % "0.1"
 javaOptions in test += "-Xmx2G"
 
 fork in test := true
+
+excludedJars in assembly := {
+  val cp = (fullClasspath in assembly).value
+  cp filter {_.data.getName == "scala-library.jar"}
+}
